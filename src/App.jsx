@@ -97,31 +97,31 @@ const App = () => {
 
   const ZombieFighters = (zombie) => {
     return (
-        <div className="zombie-fighter">
-            <h3>{zombie.name}</h3>
-            <img src={zombie.img} alt={zombie.name} />
-            <ul>
-                <li>Price ${zombie.price}</li>
-                <li>Strength {zombie.strength}</li>
-                <li>Agility {zombie.agility}</li>
-            </ul>
-            <button onClick={() => {handleAddFighter(zombie)}}>Add</button>
+      <li className="zombie-fighter">
+        <img src={zombie.img} alt={zombie.name} />
+        <div className="zombie-fighter-details">
+          <h3>{zombie.name}</h3>
+          <p>Price ${zombie.price}</p>
+          <p>Strength {zombie.strength}</p>
+          <p>Agility {zombie.agility}</p>
         </div>
+        <button onClick={() => {handleAddFighter(zombie)}}>Add</button>
+      </li>
     )
   }
 
   const ZombieTeam = (zombie) => {
     return (
-      <div className="zombie-fighter">
+      <li className="zombie-fighter">
+        <img src={zombie.img} alt={zombie.name} />
+        <div className="zombie-fighter-details">
           <h3>{zombie.name}</h3>
-          <img src={zombie.img} alt={zombie.name} />
-          <ul>
-              <li>Price ${zombie.price}</li>
-              <li>Strength {zombie.strength}</li>
-              <li>Agility {zombie.agility}</li>
-          </ul>
-          <button onClick={() => {handleRemoveFighter(zombie)}}>Remove</button>
-      </div>
+          <p>Price ${zombie.price}</p>
+          <p>Strength {zombie.strength}</p>
+          <p>Agility {zombie.agility}</p>
+        </div>
+      <button onClick={() => {handleRemoveFighter(zombie)}}>Remove</button>
+      </li>
     )
   }
 
@@ -148,28 +148,29 @@ const App = () => {
   }
 
   return (
-    <>
-    <h1>Zombie Fighters</h1>
-    <div>
-      <Money amount={money} />
-    </div>
-    <div>
-      <h2>Your Team ({team.length})</h2>
-      <p><strong>Total Strength:</strong> {totalStrength} | <strong>Total Agility:</strong> {totalAgility}</p>
-      <div className="zombie-team">
-      {team.length === 0 && <p>Select a fighter to add to your team.</p>}
-      {team.map((zombie) => (
-        <ZombieTeam key={zombie.id} {...zombie} />
-      ))}
+    <div id="app">
+      <h1>Zombie Fighters</h1>
+      <div>
+        <Money amount={money} />
       </div>
+      <div id="zombie-team-section">
+        <h2>My Team ({team.length})</h2>
+        <h3>Total Strength: {totalStrength}</h3>
+        <h3>Total Agility: {totalAgility}</h3>
+        <div className="zombie-team">
+          {team.length === 0 && <p>Select a fighter to add to your team.</p>}
+          {team.map((zombie) => (
+            <ZombieTeam key={zombie.id} {...zombie} />
+          ))}
+        </div>
+      </div>
+      <h2>Select Fighters</h2>
+      <ul>
+        {zombieFighters.map((zombie) => (
+          <ZombieFighters key={zombie.id} {...zombie} />
+        ))}
+      </ul>
     </div>
-    <h2>Select Fighters</h2>
-    <div className="zombie-fighters">
-      {zombieFighters.map((zombie) => (
-        <ZombieFighters key={zombie.id} {...zombie} />
-      ))}
-    </div>
-    </>
   )
 };
 

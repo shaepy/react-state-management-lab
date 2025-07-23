@@ -2,6 +2,12 @@
   margin: 16px;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -15,18 +21,31 @@ li {
   border-radius: 8px;
 }
 
-.zombie-fighters {
+.zombie-fighter {
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.zombie-fighter {
+.zombie-fighter-details {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7px;
-  gap: 2px;
+  gap: 5px;
+}
+
+.zombie-fighter-details p {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 6px;
+  font-size: .86rem;
+}
+
+#zombie-team-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .zombie-team {
@@ -34,8 +53,8 @@ li {
   flex-wrap: wrap;
 }
 
-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
