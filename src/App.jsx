@@ -91,9 +91,9 @@ const App = () => {
   let totalStrength = 0;
   let totalAgility = 0;
 
-  const Money = ({amount}) => {
-    return <h2>Wallet: ${amount}</h2>
-  }
+  const Money = ({ amount }) => {
+    return <h2>Wallet: ${amount}</h2>;
+  };
 
   const ZombieFighters = (zombie) => {
     return (
@@ -105,10 +105,15 @@ const App = () => {
           <p>Strength {zombie.strength}</p>
           <p>Agility {zombie.agility}</p>
         </div>
-        <button onClick={() => {handleAddFighter(zombie)}}>Add</button>
+        <button
+          onClick={() => {
+            handleAddFighter(zombie);
+          }}>
+          Add
+        </button>
       </li>
-    )
-  }
+    );
+  };
 
   const ZombieTeam = (zombie) => {
     return (
@@ -120,13 +125,17 @@ const App = () => {
           <p>Strength {zombie.strength}</p>
           <p>Agility {zombie.agility}</p>
         </div>
-      <button onClick={() => {handleRemoveFighter(zombie)}}>Remove</button>
+        <button
+          onClick={() => {
+            handleRemoveFighter(zombie);
+          }}>
+          Remove
+        </button>
       </li>
-    )
-  }
+    );
+  };
 
   const handleRemoveFighter = (zombie) => {
-    console.log("Removing fighter from team:", zombie);
     const updatedTeam = team.filter((fighter) => fighter.id !== zombie.id);
     setTeam(updatedTeam);
     setZombieFighters([...zombieFighters, zombie]);
@@ -138,13 +147,18 @@ const App = () => {
     if (wallet < 0) return console.log("Not enough money to add this fighter.");
     setMoney(money - zombie.price);
     setTeam([...team, zombie]);
-    const updatedZombies = zombieFighters.filter((fighter) => fighter.name !== zombie.name);
+    const updatedZombies = zombieFighters.filter(
+      (fighter) => fighter.name !== zombie.name
+    );
     setZombieFighters(updatedZombies);
   };
 
   if (team.length > 0) {
-    totalStrength = team.reduce((total, fighter) => total + fighter.strength, 0);
-    totalAgility = team.reduce((total, fighter) => total + fighter.agility, 0); 
+    totalStrength = team.reduce(
+      (total, fighter) => total + fighter.strength,
+      0
+    );
+    totalAgility = team.reduce((total, fighter) => total + fighter.agility, 0);
   }
 
   return (
@@ -157,12 +171,12 @@ const App = () => {
         <h2>My Team ({team.length})</h2>
         <h3>Total Strength: {totalStrength}</h3>
         <h3>Total Agility: {totalAgility}</h3>
-        <div className="zombie-team">
-          {team.length === 0 && <p>Select a fighter to add to your team.</p>}
+        <ul className="zombie-team">
+          {team.length === 0 && <li>Select a fighter to add to your team.</li>}
           {team.map((zombie) => (
             <ZombieTeam key={zombie.id} {...zombie} />
           ))}
-        </div>
+        </ul>
       </div>
       <h2>Select Fighters</h2>
       <ul>
@@ -171,7 +185,7 @@ const App = () => {
         ))}
       </ul>
     </div>
-  )
+  );
 };
 
 export default App;
